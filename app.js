@@ -26,6 +26,14 @@ const app = Vue.createApp({
       // this.counter--;
     },
   },
+  computed: {
+    fullname() {
+      if (this.name === "") {
+        return "";
+      }
+      return this.name + " " + "Khan";
+    },
+  },
 });
 
 app.mount("#events");
