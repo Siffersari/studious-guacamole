@@ -6,8 +6,8 @@ const app = Vue.createApp({
     };
   },
   methods: {
-    setName(e) {
-      this.name = e.target.value;
+    setName(e, lastName) {
+      this.name = e.target.value + " " + lastName;
     },
     add(num) {
       this.counter += num;
