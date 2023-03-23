@@ -6,6 +6,12 @@ const app = Vue.createApp({
     };
   },
   methods: {
+    outPutFullname() {
+      if (this.name === "") {
+        return "";
+      }
+      return this.name + " " + "Khan";
+    },
     resetInput() {
       this.name = "";
     },
