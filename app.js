@@ -1,65 +1,32 @@
 const app = Vue.createApp({
   data() {
     return {
-      counter: 0,
-      name: "",
-      //   fullname: "",
-      lastName: "",
+      result: 0,
     };
   },
   methods: {
-    outPutFullname() {
-      if (this.name === "" || this.lastName === "") {
-        return "";
-      }
-      return this.name + " " + "Khan";
-    },
-    resetInput() {
-      this.name = "";
-    },
-    setName(event) {
-      this.name = event.target.value;
-    },
     add(num) {
-      this.counter = this.counter + num;
-    },
-    reduce(num) {
-      this.counter = this.counter - num;
-      // this.counter--;
+      this.result += num;
     },
   },
   computed: {
-    fullname() {
-      if (this.name === "") {
-        return "";
+    num() {
+      if (this.result < 37) {
+        console.log("Not there yet");
+      } else {
+        console.log("Too much!");
       }
-      return this.name + " " + this.lastName;
+
+      return this.result;
     },
   },
   watch: {
-    counter(value) {
-      const that = this;
-      if (value > 50) {
-        setTimeout(() => {
-          this.counter = 0;
-        }, 2000);
-      }
+    result() {
+      setTimeout(() => {
+        this.result = 0;
+      }, 5000);
     },
-    // name(value) {
-    //   if (value === "") {
-    //     this.fullname = "";
-    //   } else {
-    //     this.fullname = value;
-    //   }
-    // },
-    // lastName(value) {
-    //   if (value === "") {
-    //     this.fullname = "";
-    //   } else {
-    //     this.fullname = this.name + " " + value;
-    //   }
-    // },
   },
 });
 
-app.mount("#events");
+app.mount("#assignment");
