@@ -1,29 +1,29 @@
 const app = Vue.createApp({
   data() {
     return {
-      result: 0,
+      number: 0,
     };
   },
   methods: {
     add(num) {
-      this.result += num;
+      this.number += num;
     },
   },
   computed: {
-    num() {
-      if (this.result < 37) {
-        console.log("Not there yet");
-      } else {
-        console.log("Too much!");
+    result() {
+      if (this.number < 37) {
+        return "Not there yet";
+      } else if (this.number > 37) {
+        return "Too much!";
       }
 
-      return this.result;
+      return this.number;
     },
   },
   watch: {
     result() {
       setTimeout(() => {
-        this.result = 0;
+        this.number = 0;
       }, 5000);
     },
   },
