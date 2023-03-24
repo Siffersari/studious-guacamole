@@ -1,19 +1,21 @@
 const app = Vue.createApp({
   data() {
     return {
-      boxSelected: false,
+      userClass: "",
+      userColor: "",
+      isVisible: true,
     };
   },
   computed: {
-    boxClasses() {
-      return { active: this.boxSelected };
+    visibilityClasses() {
+      return { visible: this.isVisible, hidden: !this.isVisible };
     },
   },
   methods: {
-    boxSelect() {
-      this.boxSelected = !this.boxSelected;
+    toggleVisibility() {
+      this.isVisible = !this.isVisible;
     },
   },
 });
 
-app.mount("#styling");
+app.mount("#assignment");
