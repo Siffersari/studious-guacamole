@@ -4,6 +4,11 @@ const app = Vue.createApp({
       boxSelected: false,
     };
   },
+  computed: {
+    boxClasses() {
+      return { active: this.boxSelected };
+    },
+  },
   methods: {
     boxSelect() {
       this.boxSelected = !this.boxSelected;
