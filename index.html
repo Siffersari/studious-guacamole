@@ -24,7 +24,12 @@
         No goals have been added yet - please start adding some!
       </p>
       <ul v-else>
-        <li v-for="goal in goals" @click="removeGoal">{{goal}}</li>
+        <li v-for="(goal, index) in goals" @click="removeGoal(index)">
+          {{goal}}
+        </li>
+      </ul>
+      <ul>
+        <li v-for="value in {name: 'Max', age: 31}">{{value}}</li>
       </ul>
     </section>
   </body>
