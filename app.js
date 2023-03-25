@@ -1,21 +1,15 @@
 const app = Vue.createApp({
   data() {
-    return {
-      userClass: "",
-      userColor: "",
-      isVisible: true,
-    };
-  },
-  computed: {
-    visibilityClasses() {
-      return { visible: this.isVisible, hidden: !this.isVisible };
-    },
+    return { goals: [], newGoal: "" };
   },
   methods: {
-    toggleVisibility() {
-      this.isVisible = !this.isVisible;
+    addGoal() {
+      this.goals.push(this.newGoal);
+    },
+    removeGoal(index) {
+      this.goals.splice(index, 1);
     },
   },
 });
 
-app.mount("#assignment");
+app.mount("#user-goals");
