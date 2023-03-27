@@ -1,24 +1,43 @@
+const getRandomValue = (min, max) => {
+  return Math.floor(Math.random() * (max - min)) + min;
+};
+
 const app = Vue.createApp({
   data() {
     return {
-      tasks: [],
-      taskInput: "",
-      showTasks: true,
+      playerHealth: 100,
+      monsterHealth: 100,
     };
   },
   methods: {
-    addTask() {
-      this.tasks.push(this.taskInput);
+    attackMonster() {
+      const attackValue = getRandomValue(5, 12);
+      this.monsterHealth -= attackValue;
+      this.attackPlayer();
     },
-    toggleShowTasks() {
-      this.showTasks = !this.showTasks;
+    attackPlayer() {
+      const attackValue = getRandomValue(8, 15);
+
+      this.playerHealth -= attackValue;
     },
+    specialAttackMonster() {},
+    specialAttackPlayer() {},
+    healPlayer() {},
   },
   computed: {
-    buttonCaption() {
-      return this.showTasks ? "Hide List" : "Show List";
+    monsterBarStyles() {
+      if (this.monsterHealth < 0) {
+        return { width: "0%" };
+      }
+      return { width: this.monsterHealth + "%" };
+    },
+    playerBarStyles() {
+      if (this.playerHealth < 0) {
+        return { width: "0%" };
+      }
+      return { width: this.playerHealth + "%" };
     },
   },
 });
 
-app.mount("#assignment");
+app.mount("#game");
