@@ -21,10 +21,27 @@
 <script>
 export default {
   props: {
-    name: String,
-    phoneNumber: String,
-    emailAddress: String,
-    isFavorite: String,
+    name: {
+      type: String,
+      required: true,
+    },
+    phoneNumber: {
+      type: String,
+      required: true,
+    },
+    emailAddress: {
+      type: String,
+      required: true,
+    },
+    isFavorite: {
+      type: String,
+      required: false,
+      // Default can also be a function that returns the default value
+      default: "0",
+      validator: function (value) {
+        return ["0", "1"].includes(value);
+      },
+    },
   },
   data() {
     return {
