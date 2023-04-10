@@ -1,6 +1,7 @@
 <template>
   <li>
-    <h2>{{ name }}</h2>
+    <h2>{{ name }} {{ friendIsFavorite === "1" ? "(Favorite)" : "" }}</h2>
+    <button @click="toggleFavorite">Toggle Favorite</button>
     <button @click="toggleDetails">
       {{ detailsAreVisible ? "Hide" : "Show" }} Details
     </button>
@@ -19,10 +20,11 @@
 
 <script>
 export default {
-  props: ["name", "phoneNumber", "emailAddress"],
+  props: ["name", "phoneNumber", "emailAddress", "isFavorite"],
   data() {
     return {
       detailsAreVisible: false,
+      friendIsFavorite: this.isFavorite,
       friend: {
         id: "manuel",
         name: "Manuel Lorenz",
@@ -34,6 +36,9 @@ export default {
   methods: {
     toggleDetails() {
       this.detailsAreVisible = !this.detailsAreVisible;
+    },
+    toggleFavorite() {
+      this.friendIsFavorite = this.friendIsFavorite === "1" ? "0" : "1";
     },
   },
 };
