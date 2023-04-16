@@ -5,8 +5,11 @@ module.exports = {
   extends: ["eslint:recommended", "plugin:vue/vue3-essential"],
   overrides: [],
   parserOptions: {
-    ecmaVersion: "latest",
+    ecmaVersion: 6,
     sourceType: "module",
+    ecmaFeatures: {
+      modules: true,
+    },
   },
   plugins: ["vue"],
   rules: {},
