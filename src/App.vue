@@ -1,76 +1,42 @@
-<template>
-  <section>
-    <header>
-      <h1>My Friends</h1>
-    </header>
-    <new-friend @add-contact="addContact"></new-friend>
-    <ul>
-      <friend-contact
-        v-for="friend in friends"
-        :key="friend.id"
-        :id="friend.id"
-        :name="friend.name"
-        :phone-number="friend.phone"
-        :email-address="friend.email"
-        :is-favorite="friend.isFavorite"
-        @toggle-favorite="toggleFavoriteStatus"
-        @delete="deleteContact"
-      ></friend-contact>
-    </ul>
-  </section>
+<template id="app">
+  <div class="split">
+    <user-data @add-user="addUser"></user-data>
+    <active-user :name="user.name" :age="user.age"></active-user>
+  </div>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      friends: [
-        {
-          id: "manuel",
-          name: "Manuel Lorenz",
-          phone: "0123 45678 90",
-          email: "manuel@localhost.com",
-          isFavorite: true,
-        },
-        {
-          id: "julie",
-          name: "Julie Jones",
-          phone: "0987 654421 21",
-          email: "julie@localhost.com",
-          isFavorite: false,
-        },
-      ],
+      user: {
+        name: "John Doe",
+        age: 28,
+      },
     };
   },
   methods: {
-    toggleFavoriteStatus(friendId) {
-      const identifiedFriend = this.friends.find((friend) => {
-        return friend.id === friendId;
-      });
-
-      identifiedFriend.isFavorite = !identifiedFriend.isFavorite;
-    },
-    addContact({ name, phone, email }) {
-      const newContact = {
-        id: Math.random().toString(),
-        name,
-        phone,
-        email,
-        isFavorite: false,
-      };
-
-      this.friends.push(newContact);
-    },
-    deleteContact(friendId) {
-      this.friends = this.friends.filter((friend) => {
-        return friend.id !== friendId;
-      });
+    addUser(userData) {
+      this.user = userData;
     },
   },
 };
 </script>
 
 <style>
+.split {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 2em;
+  width: 100%;
+}
+section {
+  margin: 2rem auto;
+  max-width: 40rem;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+}
 * {
   box-sizing: border-box;
 }
