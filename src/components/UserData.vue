@@ -23,12 +23,12 @@ export default {
   data() {
     return {
       enteredName: "",
-      enteredAge: 0,
+      enteredAge: "",
     };
   },
   methods: {
     submitData() {
-      this.$emit("add-user", { name: this.enteredName, age: this.enteredAge });
+      this.$emit("add-user", { name: this.enteredName, age: +this.enteredAge });
     },
   },
 };
