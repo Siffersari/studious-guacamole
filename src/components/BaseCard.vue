@@ -10,13 +10,7 @@
 </template>
 
 <script>
-export default {
-  mounted() {
-    // console.log(this.$slots);
-    // console.log(this.$slots.default);
-    console.log(this.$slots.header);
-  },
-};
+export default {};
 </script>
 
 <style scoped>
