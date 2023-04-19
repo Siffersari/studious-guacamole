@@ -14,14 +14,9 @@
 import LearningResource from "./LearningResource.vue";
 
 export default {
+  inject: ["storedResources"],
   components: {
     LearningResource,
-  },
-  props: {
-    storedResources: {
-      type: Array,
-      required: true,
-    },
   },
 };
 </script>

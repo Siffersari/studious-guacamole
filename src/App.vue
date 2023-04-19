@@ -1,15 +1,15 @@
 <template>
   <TheHeader title="Remember Me" />
-  <StoredResources :storedResources="storedResources" />
+  <TheResource />
 </template>
 
 <script>
-import StoredResources from "./components/learning-resources/StoredResources.vue";
+import TheResource from "./components/learning-resources/TheResource.vue";
 import TheHeader from "./components/layouts/TheHeader.vue";
 
 export default {
   components: {
-    StoredResources,
+    TheResource,
     TheHeader,
   },
   data() {
@@ -28,6 +28,11 @@ export default {
           link: "https://www.google.com",
         },
       ],
+    };
+  },
+  provide() {
+    return {
+      storedResources: this.storedResources,
     };
   },
 };
