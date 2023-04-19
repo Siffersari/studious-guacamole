@@ -1,54 +1,39 @@
 <template>
-  <div>
-    <!-- <the-header></the-header> -->
-
-    <TheHeader />
-    <button @click="setSelectedComponent('active-goals')">Active Goals</button>
-    <button @click="setSelectedComponent('manage-goals')">Manage Goals</button>
-    <!-- <ActiveGoals v-if="selectedComponent === 'active-goals'" />
-    <ManageGoals v-if="selectedComponent === 'manage-goals'" /> -->
-
-    <KeepAlive>
-      <component :is="selectedComponent" />
-    </KeepAlive>
-  </div>
+  <ul>
+    <LearningResource
+      v-for="resource in storedResources"
+      :key="resource.id"
+      :title="resource.name"
+      :description="resource.description"
+      :link="resource.link"
+    />
+  </ul>
 </template>
 
 <script>
-import TheHeader from "./components/layout/TheHeader.vue";
-import ActiveGoals from "./components/ActiveGoals.vue";
-import ManageGoals from "./components/ManageGoals.vue";
+import LearningResource from "./components/learning-resources/LearningResource.vue";
 
 export default {
   components: {
-    TheHeader,
-    ActiveGoals,
-    ManageGoals,
+    LearningResource,
   },
   data() {
     return {
-      selectedComponent: "active-goals",
-      activeUser: {
-        name: "Maximilian Schwarzmüller",
-        description: "Site owner and admin",
-        role: "admin",
-      },
+      storedResources: [
+        {
+          id: "official-guide",
+          name: "Official Guide",
+          description: "The official Vue.js documentation",
+          link: "https://www.vuejs.org",
+        },
+        {
+          id: "google",
+          name: "Google",
+          description: "Learn to Google",
+          link: "https://www.google.com",
+        },
+      ],
     };
-  },
-  methods: {
-    setSelectedComponent(cmp) {
-      this.selectedComponent = cmp;
-    },
   },
 };
 </script>
-
-<style>
-html {
-  font-family: sans-serif;
-}
-
-body {
-  margin: 0;
-}
-</style>
