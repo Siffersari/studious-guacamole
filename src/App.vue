@@ -1,7 +1,10 @@
-<template id="app">
-  <div class="split">
-    <user-data @add-user="addUser"></user-data>
-    <active-user :name="user.name" :age="user.age"></active-user>
+<template>
+  <div>
+    <active-element
+      :topic-title="activeTopic && activeTopic.title"
+      :text="activeTopic && activeTopic.fullText"
+    ></active-element>
+    <knowledge-base @select-topic="activateTopic"></knowledge-base>
   </div>
 </template>
 
@@ -9,101 +12,105 @@
 export default {
   data() {
     return {
-      user: {
-        name: "John Doe",
-        age: 28,
-      },
+      topics: [
+        {
+          id: 'basics',
+          title: 'The Basics',
+          description: 'Core Vue basics you have to know',
+          fullText:
+            'Vue is a great framework and it has a couple of key concepts: Data binding, events, components and reactivity - that should tell you something!',
+        },
+        {
+          id: 'components',
+          title: 'Components',
+          description:
+            'Components are a core concept for building Vue UIs and apps',
+          fullText:
+            'With components, you can split logic (and markup) into separate building blocks and then combine those building blocks (and re-use them) to build powerful user interfaces.',
+        },
+      ],
+      activeTopic: null,
     };
   },
+  provide() {
+    return {
+      topics: this.topics,
+    };
+  },
+  mounted() {
+    setTimeout(() => {
+      this.topics.push({
+        id: 'Events',
+        title: 'Events',
+        description: 'Events are a core concept for building Vue UIs and apps',
+        fullText:
+          'With events, you can split logic (and markup) into separate building blocks and then combine those building blocks (and re-use them) to build powerful user interfaces.',
+      });
+    }, 3000);
+  },
   methods: {
-    addUser(userData) {
-      this.user = userData;
+    activateTopic(topicId) {
+      this.activeTopic = this.topics.find((topic) => topic.id === topicId);
     },
   },
 };
 </script>
 
 <style>
-.split {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  padding: 2em;
-  width: 100%;
-}
-section {
-  margin: 2rem auto;
-  max-width: 40rem;
-  border-radius: 12px;
-  border: 1px solid #ccc;
-}
 * {
   box-sizing: border-box;
 }
 html {
-  font-family: "Jost", sans-serif;
+  font-family: sans-serif;
 }
 body {
   margin: 0;
 }
-header {
+section {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  margin: 3rem auto;
-  border-radius: 10px;
-  padding: 1rem;
-  background-color: #58004d;
-  color: white;
-  text-align: center;
-  width: 90%;
+  margin: 2rem auto;
   max-width: 40rem;
+  padding: 1rem;
+  border-radius: 12px;
 }
-#app ul {
+
+ul {
+  list-style: none;
   margin: 0;
   padding: 0;
-  list-style: none;
+  display: flex;
+  justify-content: center;
 }
-#app li,
-#app form {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  margin: 1rem auto;
-  border-radius: 10px;
+
+li {
+  border-radius: 12px;
+  border: 1px solid #ccc;
   padding: 1rem;
+  width: 15rem;
+  margin: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+h2 {
+  margin: 0.75rem 0;
   text-align: center;
-  width: 90%;
-  max-width: 40rem;
 }
-#app h2 {
-  font-size: 2rem;
-  border-bottom: 4px solid #ccc;
-  color: #58004d;
-  margin: 0 0 1rem 0;
-}
-#app button {
+
+button {
   font: inherit;
-  cursor: pointer;
-  border: 1px solid #ff0077;
-  background-color: #ff0077;
+  border: 1px solid #c70053;
+  background-color: #c70053;
   color: white;
-  padding: 0.05rem 1rem;
-  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.26);
+  padding: 0.75rem 2rem;
+  border-radius: 30px;
+  cursor: pointer;
 }
-#app button:hover,
-#app button:active {
-  background-color: #ec3169;
-  border-color: #ec3169;
-  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.26);
-}
-#app input {
-  font: inherit;
-  padding: 0.15rem;
-}
-#app label {
-  font-weight: bold;
-  margin-right: 1rem;
-  width: 7rem;
-  display: inline-block;
-}
-#app form div {
-  margin: 1rem 0;
+
+button:hover,
+button:active {
+  background-color: #e24d8b;
+  border-color: #e24d8b;
 }
 </style>
