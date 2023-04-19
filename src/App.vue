@@ -13,27 +13,7 @@ export default {
     TheHeader,
   },
   data() {
-    return {
-      storedResources: [
-        {
-          id: "official-guide",
-          name: "Official Guide",
-          description: "The official Vue.js documentation",
-          link: "https://www.vuejs.org",
-        },
-        {
-          id: "google",
-          name: "Google",
-          description: "Learn to Google",
-          link: "https://www.google.com",
-        },
-      ],
-    };
-  },
-  provide() {
-    return {
-      storedResources: this.storedResources,
-    };
+    return {};
   },
 };
 </script>
