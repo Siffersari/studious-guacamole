@@ -8,7 +8,9 @@
     <!-- <ActiveGoals v-if="selectedComponent === 'active-goals'" />
     <ManageGoals v-if="selectedComponent === 'manage-goals'" /> -->
 
-    <component :is="selectedComponent" />
+    <keep-alive>
+      <component :is="selectedComponent" />
+    </keep-alive>
   </div>
 </template>
 
