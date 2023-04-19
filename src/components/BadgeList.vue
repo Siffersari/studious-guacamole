@@ -1,6 +1,6 @@
 <template>
   <base-card>
-    <template #:default>
+    <template #default>
       <ul>
         <li>
           <base-badge type="admin" caption="ADMIN"></base-badge>
