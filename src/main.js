@@ -1,7 +1,16 @@
-import { createApp } from 'vue';
+import { createApp } from "vue";
 
-import App from './App.vue';
+import router from "./router.js";
+import App from "./App.vue";
+import BaseBadge from "./components/ui/BaseBadge.vue";
+import store from "./store";
 
-const app = createApp(App)
+const app = createApp(App);
 
-app.mount('#app');
+app.use(store);
+
+app.use(router);
+
+app.component("base-badge", BaseBadge);
+
+app.mount("#app");
