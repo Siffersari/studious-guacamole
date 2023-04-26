@@ -11,11 +11,6 @@ export default {
   components: {
     TheHeader,
   },
-  data() {
-    return {
-      isLoggedIn: false,
-    };
-  },
 
   methods: {
     ...mapActions(["logout", "login"]),

@@ -31,7 +31,7 @@ export default {
       return this.$store.getters["cart/quantity"];
     },
     isLoggedIn() {
-      return this.$store.getters["auth/isLoggedIn"];
+      return this.$store.getters["userIsAuthenticated"];
     },
     cart() {
       return this.$store.getters["cart/cart"];
@@ -39,10 +39,10 @@ export default {
   },
   methods: {
     login() {
-      this.$store.dispatch("auth/login");
+      this.$store.dispatch("login");
     },
     logout() {
-      this.$store.dispatch("auth/logout");
+      this.$store.dispatch("logout");
     },
   },
 };
